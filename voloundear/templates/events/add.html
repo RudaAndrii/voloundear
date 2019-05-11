@@ -1,7 +1,9 @@
-<html>
-<body>
 <form method="POST">
     {% csrf_token %}
+    <input type="text" name="topic" value="topic"><br>
+    <textarea rows="5" cols="60" name="content">
+        Enter content here
+    </textarea>
     <select name="category">
         <option value="IT">IT</option>
         <option value="Kids">Kids</option>
@@ -10,16 +12,3 @@
     </select>
     <input type="submit" value="Submit">
 </form>
-
-
-{% for event in events %}
-    <div>
-        <h3>{{ event.topic }}</h3>
-        <p>{{ event.category }}</p>
-        <p>{{ event.content }}</p>
-        <p>{{ event.date_posted }}</p>
-    </div>
-{% endfor %}
-
-</body>
-</html>
