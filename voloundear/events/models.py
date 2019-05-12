@@ -8,15 +8,24 @@ from django.contrib.auth.models import User
 class Event(models.Model):
     CATEGORIES = (
         ('IT', 'IT'),
-        ('Kids', 'Kids'),
-        ('Concerts', 'Concerts'),
-        ('Education', 'Education'),
+        ('Kids', 'Діти'),
+        ('Concerts', 'Концерти'),
+        ('Education', 'Освіта'),
+    )
+
+    CITIES = (
+        ('Lviv', 'Львів'),
+        ('Kyiv', 'Київ'),
+        ('Kharkiv', 'Харків'),
+        ('Dnipro', 'Дніпро'),
+        ('Lugansk', 'Луганськ'),
     )
 
     topic = models.CharField(max_length=50, default='Event')
     category = models.CharField(max_length=15, choices=CATEGORIES)
     content = models.TextField()
-    date_posted = models.DateField(default=timezone.now)
+    date = models.DateField(default=timezone.now)
+    city = models.CharField(max_length=20, choices=CITIES)
 
     def __str__(self):
         return f'Event title: {self.topic}'

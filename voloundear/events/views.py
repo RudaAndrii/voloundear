@@ -20,7 +20,10 @@ def post_event(request):
         topic = request.POST['topic']
         content = request.POST['content']
         category = request.POST['category']
-        new_event = Event(topic=topic, content=content, category=category)
+        city = request.POST['city']
+        # date = request.POST['date']
+
+        new_event = Event(topic=topic, content=content, category=category, city=city)
         new_event.save()
         return HttpResponse('Event saved!')
     return render(request, 'events/add.html')
