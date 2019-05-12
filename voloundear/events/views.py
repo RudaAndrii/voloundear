@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Event, UserProfile
 from django.http import HttpResponse
 
@@ -10,27 +10,19 @@ def main_view(request):
     elif request.method == 'POST':
         category = request.POST['category']
         events = Event.objects.filter(category=category)
-    return render(request, 'events/index.html', {
+    return render(request, 'events/welfare/index.html', {
         'events': events
     })
 
 
 def post_event(request):
     if request.method == 'POST':
-        topic = request.POST['topic']
-        content = request.POST['content']
-        category = request.POST['category']
-        city = request.POST['city']
-        # date = request.POST['date']
+        city = request.POST['event-city']
+        category = request.POST['event-category']
+        topic = request.POST['event-topic']
+        content = request.POST['event-content']
 
-        new_event = Event(topic=topic, content=content, category=category, city=city)
+        new_event = Event(city=city, category=category, topic=topic, content=content)
         new_event.save()
-        return HttpResponse('Event saved!')
-    return render(request, 'events/add.html')
-
-
-def leaderboard(request):
-    user_profiles = UserProfile.objects.order_by('-points')
-    return render(request, 'events/leaderboard.html', {
-        'users': user_profiles
-    })
+        return redirect('main-events')
+    return render(request, 'events/welfare/create.html')
