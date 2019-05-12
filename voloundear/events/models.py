@@ -27,4 +27,4 @@ class UserProfile(models.Model):
     points = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.points
+        return 'Points' + str(self.points)

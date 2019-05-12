@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BVolunteer</title>
+    <meta charset="UTF-8">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'events/style.css' %}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,900|Ubuntu:400,700&amp;subset=cyrillic-ext"
+          rel="stylesheet">
+
+    <!-- Bootstrap scripts -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<div id="header">
+    <h1>B-Volunteer</h1>
+    <h3>година для міста</h3>
+</div>
+
+<div id="main" class="row">
+    <div id="events" class="col-lg-8">
+        <div class="row">
+            {% for event in events %}
+                <div class="col-lg-6 event">
+                    <div class="card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLLstSMm04FwkInx2c8wPHt9nIspVyY7K2rVF1PlZEnRmyatsr"
+                             class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.topic }}</h5>
+                            <p class="card-text">{{ event.date_posted }}</p>
+                            <a href="#" class="">детальніше</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="filters" class="col-lg-4">
+        <div class="filters-cont">
+            <div class="form-group city">
+                <label for="city-name">Місто</label>
+                <select class="form-control" id="city-name">
+                    <option>Львів</option>
+                    <option>Київ</option>
+                    <option>Дніпро</option>
+                    <option>Харків</option>
+                    <option>Луганськ</option>
+                </select>
+            </div>
+            <label for="category">Виберіть категорію</label>
+            <!-- <select class="form-control" id="category">
+              <option>ІТ</option>
+              <option>Діти</option>
+              <option>Концерти</option>
+              <option>Освіта</option>
+            </select> -->
+            <div id="categories">
+                <div class="form-check it">
+                    <input type="checkbox" class="form-check-input" id="it">
+                    <label class="form-check-label" for="it">IT</label>
+                </div>
+                <div class="form-check it">
+                    <input type="checkbox" class="form-check-input" id="kids">
+                    <label class="form-check-label" for="kids">Діти</label>
+                </div>
+                <div class="form-check it">
+                    <input type="checkbox" class="form-check-input" id="concerts">
+                    <label class="form-check-label" for="concerts">Концерти</label>
+                </div>
+                <div class="form-check it">
+                    <input type="checkbox" class="form-check-input" id="education">
+                    <label class="form-check-label" for="education">Освіта</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+
+</div>
+</body>
+</html>

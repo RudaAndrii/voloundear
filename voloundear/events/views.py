@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Event
+from .models import Event, UserProfile
 from django.http import HttpResponse
 
 
@@ -10,7 +10,7 @@ def main_view(request):
     elif request.method == 'POST':
         category = request.POST['category']
         events = Event.objects.filter(category=category)
-    return render(request, 'events/main.html', {
+    return render(request, 'events/index.html', {
         'events': events
     })
 
@@ -24,3 +24,10 @@ def post_event(request):
         new_event.save()
         return HttpResponse('Event saved!')
     return render(request, 'events/add.html')
+
+
+def leaderboard(request):
+    user_profiles = UserProfile.objects.order_by('-points')
+    return render(request, 'events/leaderboard.html', {
+        'users': user_profiles
+    })
